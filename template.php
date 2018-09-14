@@ -21,3 +21,8 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-orange.min.css">
     <link rel="stylesheet" href="../public/css/styles.css">
 </head>
+<body>
+<?= $content ?>
+<script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+</html>
