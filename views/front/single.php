@@ -8,24 +8,24 @@
     <title>Title</title>
 
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" sizes="192x192" href="../public/img/android-desktop.png">
+    <link rel="icon" sizes="192x192" href="../../public/img/android-desktop.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Material Design Lite">
-    <link rel="apple-touch-icon-precomposed" href="../public/img/ios-desktop.png">
+    <link rel="apple-touch-icon-precomposed" href="../../public/img/ios-desktop.png">
     <meta name="msapplication-TileImage" content="../public/img/touch/ms-touch-icon-144x144-precomposed.png">
     <meta name="msapplication-TileColor" content="#3372DF">
-    <link rel="shortcut icon" href="../public/img/favicon.png">
+    <link rel="shortcut icon" href="../../public/img/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.grey-orange.min.css">
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="../../public/css/styles.css">
 </head>
 <body>
     <div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <div class="demo-back">
-          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="home.php" title="go back" role="button">
+          <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="home.phpdex.php" title="go back" role="button">
             <i class="material-icons" role="presentation">arrow_back</i>
           </a>
         </div>
@@ -68,7 +68,7 @@
               </form>
                   <div class="comment mdl-color-text--grey-700">
                       <header class="comment__header">
-                          <img src="../public/img/co1.jpg" class="comment__avatar">
+                          <img src="../../public/img/co1.jpg" class="comment__avatar">
                           <div class="comment__author">
                               <strong>author</strong>
                               <span>comment_date</span>
@@ -91,14 +91,14 @@
           </div>
 
           <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-            <a href="home.php" class="demo-nav__button">
+            <a href="home.phpdex.php" class="demo-nav__button">
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_back</i>
               </button>
               Newer
             </a>
             <div class="section-spacer"></div>
-            <a href="home.php" class="demo-nav__button">
+            <a href="home.phpdex.php" class="demo-nav__button">
               Older
               <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
                 <i class="material-icons">arrow_forward</i>

@@ -2,13 +2,13 @@
 
 namespace Models;
 
-class Comment extends Manager {
+class CommentManager extends Manager {
 
     public function postComment($postId, $author, $comment){
         $db = $this->dbConnection();
         $req = $db->prepare('INSERT INTO comments (post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())');
-        $newComments = $req->execute(array($postId, $author, $comment));
-        return $newComments;
+        $newComment = $req->execute(array($postId, $author, $comment));
+        return $newComment;
     }
 
     public function getComments($postId){
