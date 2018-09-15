@@ -5,10 +5,10 @@ namespace Controllers;
 use Models\PostModel;
 
 class HomeController {
-    function getAll(){
+    public function getAll(){
         $postManager = new PostModel();
         $posts = $postManager->getPosts();
 
-        require 'view/front/home.php';
+        require 'views/front/home.php';
     }
 }

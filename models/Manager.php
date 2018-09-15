@@ -7,7 +7,7 @@ class Manager {
     private $_host = 'localhost';
     private $_dbname = 'p3';
     private $_username = 'root';
-    private $_password = '';
+    private $_password = 'root';
 
     protected function dbConnection(){
         try {
