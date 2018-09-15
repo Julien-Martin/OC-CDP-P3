@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
-use Models\UserManager;
+use Models\UserModel;
 
 class UserController {
     function getAll(){
-        $userManager = new UserManager();
+        $userManager = new UserModel();
 
     }
 }

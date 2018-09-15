@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class CommentManager extends Manager {
+class CommentModel extends Manager {
 
     public function postComment($postId, $author, $comment){
         $db = $this->dbConnection();

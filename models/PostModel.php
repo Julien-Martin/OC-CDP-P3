@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class PostManager extends Manager {
+class PostModel extends Manager {
 
     public function createPost($title, $content){
         $db = $this->dbConnection();

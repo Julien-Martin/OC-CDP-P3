@@ -2,7 +2,7 @@
 
 namespace Models;
 
-class UserManager extends Manager {
+class UserModel extends Manager {
 
   public function createUser($username, $password, $mail){
     $db = $this->dbConnection();

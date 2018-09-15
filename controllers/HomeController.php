@@ -2,11 +2,11 @@
 
 namespace Controllers;
 
-use Models\PostManager;
+use Models\PostModel;
 
 class HomeController {
     function getAll(){
-        $postManager = new PostManager();
+        $postManager = new PostModel();
         $posts = $postManager->getPosts();
 
         require 'view/front/home.php';

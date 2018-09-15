@@ -2,13 +2,13 @@
 
 namespace Controllers;
 
-use Models\PostManager;
-use Models\CommentManager;
+use Models\PostModel;
+use Models\CommentModel;
 
 class SingleController {
     function getPost(){
-        $postManager = new PostManager();
-        $commentManager = new CommentManager();
+        $postManager = new PostModel();
+        $commentManager = new CommentModel();
 
         $post = $postManager->getPost($_GET['id']);
         $comments = $commentManager->getComments($_GET['id']);
@@ -17,7 +17,7 @@ class SingleController {
     }
 
     function addComment($postId, $author, $comment){
-        $commentManager = new CommentManager();
+        $commentManager = new CommentModel();
 
         $newComment = $commentManager->postComment($postId, $author, $comment);
 
