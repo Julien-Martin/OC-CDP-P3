@@ -13,7 +13,7 @@ class SingleController {
         $post = $postManager->getPost($_GET['id']);
         $comments = $commentManager->getComments($_GET['id']);
 
-        require 'view/front/single.php';
+        require 'views/front/single.php';
     }
 
     function addComment($postId, $author, $comment){
