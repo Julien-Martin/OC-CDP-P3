@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="A front-end template that helps you build fast, modern mobile web apps.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Material Design Lite</title>
+    <title>Title</title>
 
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" sizes="192x192" href="../public/img/android-desktop.png">
@@ -32,12 +32,12 @@
         <div class="demo-blog__posts mdl-grid">
           <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
             <div class="mdl-card__media mdl-color-text--grey-50">
-              <h3><?= htmlspecialchars($post['title']) ?></h3>
+              <h3>Titre</h3>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
               <div class="minilogo"></div>
               <div>
-                <span><?= $post['creationdate'] ?></span>
+                <span>date</span>
               </div>
               <div class="section-spacer"></div>
               <div class="meta__favorites">
@@ -54,7 +54,7 @@
               </div>
             </div>
             <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-              <p><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+              <p>content</p>
             </div>
             <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
               <form>
@@ -66,18 +66,15 @@
                   <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
                 </button>
               </form>
-              <?php
-                while($comment = $comment->fetch()) {
-              ?>
                   <div class="comment mdl-color-text--grey-700">
                       <header class="comment__header">
                           <img src="public/img/co1.jpg" class="comment__avatar">
                           <div class="comment__author">
-                              <strong><?= htmlspecialchars($comment['author']) ?></strong>
-                              <span><?= $comment['comment_date'] ?></span>
+                              <strong>comment</strong>
+                              <span>comment_date</span>
                           </div>
                       </header>
-                      <div class="comment__text"><?= nl2br(htmlspecialchars($comment['comment']))?></div>
+                      <div class="comment__text">comment</div>
                       <nav class="comment__actions">
                           <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                               <i class="material-icons" role="presentation">thumb_up</i><span class="visuallyhidden">like comment</span>
@@ -90,9 +87,6 @@
                           </button>
                       </nav>
                   </div>
-              <?php
-                }
-              ?>
             </div>
           </div>
 
@@ -117,3 +111,4 @@
     <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>
+
