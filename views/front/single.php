@@ -10,12 +10,12 @@
         <div class="demo-blog__posts mdl-grid">
             <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
                 <div class="mdl-card__media mdl-color-text--grey-50">
-                    <h3><?= $post['title']; ?></h3>
+                    <h3><?= $episode['title']; ?></h3>
                 </div>
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
                     <div class="minilogo"></div>
                     <div>
-                        <span><?= $post['creation_date']; ?></span>
+                        <span><?= $episode['creation_date']; ?></span>
                     </div>
                     <div class="section-spacer"></div>
                     <div class="meta__favorites">
@@ -32,10 +32,10 @@
                     </div>
                 </div>
                 <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-                    <p><?= $post['content']; ?></p>
+                    <p><?= $episode['content']; ?></p>
                 </div>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-                    <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
+                    <form action="index.php?action=addComment&amp;id=<?= $episode['id'] ?>" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="author" name="author">
                             <label class="mdl-textfield__label" for="author">Nom</label>
@@ -81,9 +81,9 @@
             </div>
             <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
                 <?php
-                    if($post['id'] != 1) {
-                        $previousPage = $post['id'] - 1;
-                        $url = 'index.php?action=post&id=' . $previousPage;
+                    if($_GET['episodeId'] != 1 && $_GET['episodeId'] <= $total) {
+                        $previousPage = $_GET['episodeId'] - 1;
+                        $url = 'index.php?action=episode&bookId='.$_GET['bookId'].'&episodeId='. $previousPage;
                         echo '<a href=' . $url . ' class="demo-nav__button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
@@ -98,9 +98,9 @@
                 <div class="section-spacer"></div>
 
                 <?php
-                    if($post['id'] != $total){
-                        $nextPage = $post['id'] + 1;
-                        $url = 'index.php?action=post&id='.$nextPage;
+                    if($_GET['episodeId'] != $total && $_GET['episodeId'] <= $total){
+                        $nextPage = $_GET['episodeId'] + 1;
+                        $url = 'index.php?action=episode&bookId='.$_GET['bookId'].'&episodeId='.$nextPage;
                         echo '<a href='.$url.' class="demo-nav__button">
                                 Épisode '.$nextPage.'
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"

@@ -3,21 +3,22 @@
 namespace Controllers;
 
 use Models\PostModel;
+use Models\EpisodeModel;
 use Models\CommentModel;
 
 class SingleController {
 
     public $postManager;
+    public $episodeManager;
     public $commentManager;
 
-    function getPost(){
-        $this->postManager = new PostModel();
+    function getEpisode(){
+        $this->episodeManager = new EpisodeModel();
         $this->commentManager = new CommentModel();
 
-        $post = $this->postManager->getPost($_GET['id']);
-        $comments = $this->commentManager->getComments($_GET['id']);
-        $total = count($this->postManager->getPosts()->fetchAll());
-
+        $episode = $this->episodeManager->getEpisode($_GET['bookId'], $_GET['episodeId']);
+        $comments = $this->commentManager->getComments($_GET['episodeId']);
+        $total = count($this->episodeManager->getEpisodes($_GET['bookId'])->fetchAll());
         require 'views/front/single.php';
     }
 

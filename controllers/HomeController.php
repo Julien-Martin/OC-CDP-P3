@@ -2,14 +2,14 @@
 
 namespace Controllers;
 
-use Models\PostModel;
+use Models\BookModel;
 
 class HomeController {
 
-    public function getAll(){
-        $postManager = new PostModel();
-        $posts = $postManager->getPosts();
-
+    function getBooks(){
+        $bookManager = new BookModel();
+        $books = $bookManager->getBooks();
         require 'views/front/home.php';
     }
+
 }

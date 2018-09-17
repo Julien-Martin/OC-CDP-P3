@@ -4,17 +4,17 @@ namespace Models;
 
 class CommentModel extends Manager {
 
-    public function postComment($postId, $author, $comment){
+    public function postComment($episodeId, $author, $comment){
         $db = $this->dbConnection();
-        $req = $db->prepare('INSERT INTO comments (post_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())');
-        $newComment = $req->execute(array($postId, $author, $comment));
+        $req = $db->prepare('INSERT INTO comments (episode_id, author, comment, comment_date) VALUES (?, ?, ?, NOW())');
+        $newComment = $req->execute(array($episodeId, $author, $comment));
         return $newComment;
     }
 
-    public function getComments($postId){
+    public function getComments($episodeId){
         $db = $this->dbConnection();
-        $comments = $db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE post_id=?');
-        $comments->execute(array($postId));
+        $comments = $db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE episode_id=?');
+        $comments->execute(array($episodeId));
         return $comments;
     }
 

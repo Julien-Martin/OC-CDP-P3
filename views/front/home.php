@@ -3,13 +3,12 @@
         <main class="mdl-layout__content">
             <div class="demo-blog__posts mdl-grid">
                 <?php
-                while($data = $posts->fetch()) {
+                while($data = $books->fetch()) {
                     ?>
-                    <div class="mdl-card coffee-pic mdl-cell mdl-cell--6-col">
+                    <div class="mdl-card coffee-pic mdl-cell mdl-cell--12-col">
                         <div class="mdl-card__media mdl-color-text--grey-50">
-                            <h3><a href=<?= "index.php?action=post&id=".$data['id']; ?>><?= htmlspecialchars($data['title']); ?></a></h3>
+                            <h3><a href=<?= "index.php?action=book&bookId=".$data['id']; ?>><?= htmlspecialchars($data['title']); ?></a></h3>
                         </div>
-                        <div class="mdl-color-text--grey-600 mdl-card__supporting-text"><?= nl2br(htmlspecialchars($data['content'])); ?></div>
                         <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                             <div class="minilogo"></div>
                             <div>
@@ -31,7 +30,7 @@
                 </nav>-->
             </div>
 <?php
-$posts->closeCursor();
+$books->closeCursor();
 $content = ob_get_clean();
 require 'template.php';
 ?>
