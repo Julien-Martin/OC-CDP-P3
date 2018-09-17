@@ -24,7 +24,7 @@ class SingleController {
     function addComment($postId, $author, $comment){
         $this->commentManager = new CommentModel();
         $newComment = $this->commentManager->postComment($postId, $author, $comment);
-
+        var_dump($newComment);
         if($newComment === false){
             throw new \Exception("Impossible d'ajouter le commentaire");
         } else {

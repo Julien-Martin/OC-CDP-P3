@@ -20,7 +20,7 @@
                     <?php
                     }
                 ?>
-                <nav class="demo-nav mdl-cell mdl-cell--12-col">
+                <!--<nav class="demo-nav mdl-cell mdl-cell--12-col">
                     <div class="section-spacer"></div>
                     <a href="single.php" class="demo-nav__button" title="show more">
                         More
@@ -28,7 +28,7 @@
                             <i class="material-icons" role="presentation">arrow_forward</i>
                         </button>
                     </a>
-                </nav>
+                </nav>-->
             </div>
 <?php
 $posts->closeCursor();

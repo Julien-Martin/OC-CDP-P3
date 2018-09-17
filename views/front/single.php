@@ -35,14 +35,14 @@
                     <p><?= $post['content']; ?></p>
                 </div>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-                    <form>
+                    <form action="index.php?action=addComment&amp;id=<?= $post['id'] ?>" method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea>
-                            <label for="comment" class="mdl-textfield__label">Nom</label>
+                            <input class="mdl-textfield__input" type="text" id="author" name="author">
+                            <label class="mdl-textfield__label" for="author">Nom</label>
                         </div>
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <textarea rows=1 class="mdl-textfield__input" id="comment"></textarea>
-                            <label for="comment" class="mdl-textfield__label">Commentaire</label>
+                            <input class="mdl-textfield__input" type="text" id="comment" name="comment">
+                            <label class="mdl-textfield__label" for="comment">Commentaire</label>
                         </div>
                         <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
