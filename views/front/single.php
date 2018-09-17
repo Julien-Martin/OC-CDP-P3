@@ -60,19 +60,19 @@
                                 </div>
                             </header>
                             <div class="comment__text"><?= $data['comment']; ?></div>
-                            <nav class="comment__actions">
-                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                    <i class="material-icons" role="presentation">thumb_up</i><span
-                                            class="visuallyhidden">like comment</span>
-                                </button>
-                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                    <i class="material-icons" role="presentation">thumb_down</i><span
-                                            class="visuallyhidden">dislike comment</span>
-                                </button>
-                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                    <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>
-                                </button>
-                            </nav>
+<!--                            <nav class="comment__actions">-->
+<!--                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
+<!--                                    <i class="material-icons" role="presentation">thumb_up</i><span-->
+<!--                                            class="visuallyhidden">like comment</span>-->
+<!--                                </button>-->
+<!--                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
+<!--                                    <i class="material-icons" role="presentation">thumb_down</i><span-->
+<!--                                            class="visuallyhidden">dislike comment</span>-->
+<!--                                </button>-->
+<!--                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
+<!--                                    <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>-->
+<!--                                </button>-->
+<!--                            </nav>-->
                         </div>
                         <?php
                     }
@@ -82,13 +82,14 @@
             <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
                 <?php
                     if($post['id'] != 1) {
-                        $url = 'index.php?action=post&id=' . ($post['id'] - 1);
+                        $previousPage = $post['id'] - 1;
+                        $url = 'index.php?action=post&id=' . $previousPage;
                         echo '<a href=' . $url . ' class="demo-nav__button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
                                     <i class="material-icons">arrow_back</i>
                                 </button>
-                                Précédent
+                                Épisode '.$previousPage.'
                             </a>';
                     }
                 ?>
@@ -98,9 +99,10 @@
 
                 <?php
                     if($post['id'] != $total){
-                        $url = 'index.php?action=post&id='.($post['id']+1);
+                        $nextPage = $post['id'] + 1;
+                        $url = 'index.php?action=post&id='.$nextPage;
                         echo '<a href='.$url.' class="demo-nav__button">
-                                Suivant
+                                Épisode '.$nextPage.'
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
                                     <i class="material-icons">arrow_forward</i>
