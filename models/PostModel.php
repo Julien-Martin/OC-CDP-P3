@@ -13,7 +13,7 @@ class PostModel extends Manager {
 
     public function getPosts(){
         $db = $this->dbConnection();
-        $req = $db->query('SELECT id, title, content, creation_date FROM posts ORDER BY creation_date DESC');
+        $req = $db->query('SELECT * FROM posts ORDER BY creation_date DESC');
         return $req;
     }
 

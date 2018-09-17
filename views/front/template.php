@@ -23,11 +23,11 @@
 </head>
 <body>
 <?= $content; ?>
-            <footer class="mdl-mini-footer">
+        <footer class="mdl-mini-footer">
 
-            </footer>
-        </main>
-    </div>
+        </footer>
+    </main>
+</div>
 <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 </body>
 </html>

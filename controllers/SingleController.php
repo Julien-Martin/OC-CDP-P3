@@ -6,20 +6,24 @@ use Models\PostModel;
 use Models\CommentModel;
 
 class SingleController {
-    function getPost(){
-        $postManager = new PostModel();
-        $commentManager = new CommentModel();
 
-        $post = $postManager->getPost($_GET['id']);
-        $comments = $commentManager->getComments($_GET['id']);
+    public $postManager;
+    public $commentManager;
+
+    function getPost(){
+        $this->postManager = new PostModel();
+        $this->commentManager = new CommentModel();
+
+        $post = $this->postManager->getPost($_GET['id']);
+        $comments = $this->commentManager->getComments($_GET['id']);
+        $total = count($this->postManager->getPosts()->fetchAll());
 
         require 'views/front/single.php';
     }
 
     function addComment($postId, $author, $comment){
-        $commentManager = new CommentModel();
-
-        $newComment = $commentManager->postComment($postId, $author, $comment);
+        $this->commentManager = new CommentModel();
+        $newComment = $this->commentManager->postComment($postId, $author, $comment);
 
         if($newComment === false){
             throw new \Exception("Impossible d'ajouter le commentaire");
