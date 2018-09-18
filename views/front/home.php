@@ -7,7 +7,7 @@
                     ?>
                     <div class="mdl-card coffee-pic mdl-cell mdl-cell--12-col">
                         <div class="mdl-card__media mdl-color-text--grey-50">
-                            <h3><a href=<?= "index.php?action=book&bookId=".$data['id']; ?>><?= htmlspecialchars($data['title']); ?></a></h3>
+                            <h3><a href=<?= "/book/".$data['id']; ?>><?= htmlspecialchars($data['title']); ?></a></h3>
                         </div>
                         <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
                             <div class="minilogo"></div>

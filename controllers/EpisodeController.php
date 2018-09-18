@@ -6,9 +6,9 @@ use Models\EpisodeModel;
 
 class EpisodeController {
 
-    public function getAll(){
+    public function getEpisodes($bookId){
         $episodeManager = new EpisodeModel();
-        $episodes = $episodeManager->getEpisodes($_GET['bookId']);
+        $episodes = $episodeManager->getEpisodes($bookId);
 
         require 'views/front/episodes.php';
     }

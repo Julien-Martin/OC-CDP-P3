@@ -35,7 +35,7 @@
                     <p><?= $episode['content']; ?></p>
                 </div>
                 <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-                    <form action="index.php?action=addComment&amp;id=<?= $episode['id'] ?>" method="post">
+                    <form action=<?= '/book/'.$bookId.'/episode/'.$episodeId.'/addComment' ?> method="post">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" id="author" name="author">
                             <label class="mdl-textfield__label" for="author">Nom</label>
@@ -53,26 +53,19 @@
                         ?>
                         <div class="comment mdl-color-text--grey-700">
                             <header class="comment__header">
-                                <img src="../../public/img/co1.jpg" class="comment__avatar">
+                                <img src="/public/img/co1.jpg" class="comment__avatar">
                                 <div class="comment__author">
                                     <strong><?= $data['author']; ?></strong>
                                     <span><?= $data['comment_date']; ?></span>
                                 </div>
                             </header>
                             <div class="comment__text"><?= $data['comment']; ?></div>
-<!--                            <nav class="comment__actions">-->
-<!--                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
-<!--                                    <i class="material-icons" role="presentation">thumb_up</i><span-->
-<!--                                            class="visuallyhidden">like comment</span>-->
-<!--                                </button>-->
-<!--                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
-<!--                                    <i class="material-icons" role="presentation">thumb_down</i><span-->
-<!--                                            class="visuallyhidden">dislike comment</span>-->
-<!--                                </button>-->
-<!--                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">-->
-<!--                                    <i class="material-icons" role="presentation">share</i><span class="visuallyhidden">share comment</span>-->
-<!--                                </button>-->
-<!--                            </nav>-->
+                            <nav class="comment__actions">
+                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                    <i class="material-icons" role="presentation">thumb_up</i><span
+                                            class="visuallyhidden">like comment</span>
+                                </button>
+                            </nav>
                         </div>
                         <?php
                     }
@@ -81,9 +74,9 @@
             </div>
             <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
                 <?php
-                    if($_GET['episodeId'] != 1 && $_GET['episodeId'] <= $total) {
-                        $previousPage = $_GET['episodeId'] - 1;
-                        $url = 'index.php?action=episode&bookId='.$_GET['bookId'].'&episodeId='. $previousPage;
+                    if($episodeId != 1 && $episodeId <= $total) {
+                        $previousPage = $episodeId - 1;
+                        $url = '/book/'.$bookId.'/episode/'. $previousPage;
                         echo '<a href=' . $url . ' class="demo-nav__button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
@@ -98,9 +91,9 @@
                 <div class="section-spacer"></div>
 
                 <?php
-                    if($_GET['episodeId'] != $total && $_GET['episodeId'] <= $total){
-                        $nextPage = $_GET['episodeId'] + 1;
-                        $url = 'index.php?action=episode&bookId='.$_GET['bookId'].'&episodeId='.$nextPage;
+                    if($episodeId != $total && $episodeId <= $total){
+                        $nextPage = $episodeId + 1;
+                        $url = '/book/'.$bookId.'/episode/'.$nextPage;
                         echo '<a href='.$url.' class="demo-nav__button">
                                 Épisode '.$nextPage.'
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
