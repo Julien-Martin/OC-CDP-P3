@@ -24,7 +24,6 @@ class SingleController {
 
     function addComment($bookId, $episodeId){
         $this->commentManager = new CommentModel();
-        var_dump($_POST['author']);
         $newComment = $this->commentManager->postComment($episodeId, $_POST['author'], $_POST['comment']);
         if($newComment === false){
             throw new \Exception("Impossible d'ajouter le commentaire");

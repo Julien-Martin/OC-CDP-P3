@@ -39,5 +39,4 @@ class EpisodeModel extends Manager {
         $req->execute(array($title, $content, $book_id, $episodeId));
         return $req;
     }
-
 }

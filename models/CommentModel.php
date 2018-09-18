@@ -11,9 +11,15 @@ class CommentModel extends Manager {
         return $newComment;
     }
 
+    public function getAllComments(){
+        $db = $this->dbConnection();
+        $comments = $db->query('SELECT * FROM comments');
+        return $comments;
+    }
+
     public function getComments($episodeId){
         $db = $this->dbConnection();
-        $comments = $db->prepare('SELECT id, author, comment, comment_date FROM comments WHERE episode_id=?');
+        $comments = $db->prepare('SELECT * FROM comments WHERE episode_id=?');
         $comments->execute(array($episodeId));
         return $comments;
     }
