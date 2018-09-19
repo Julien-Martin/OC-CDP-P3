@@ -2,41 +2,52 @@
 $view = 'Épisodes';
 ob_start();
 ?>
-    <div class="mdl-grid">
-        <div class="demo-card-event mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
-            <div class="mdl-card__title mdl-card--expand">
-                <div class="book-card-content">
-                    <a href='/admin/posts/newPost'><i class="material-icons">note_add</i></a>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-warning">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/admin/posts/newPost">
+                                        <i class="material-icons">note_add</i> Ajouter un épisode
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <table class="table">
+                                <tbody>
+                                <?php foreach ($posts as $post):?>
+                                <tr>
+                                    <td><?= $post['title']; ?></td>
+                                    <td><?= substr($post['content'], 0, 50); ?></td>
+                                    <td class="td-actions text-right">
+                                        <button onclick="location.href='<?= '/admin/posts/'.$post['id'];?>'" type="button" rel="tooltip" title="Editer"
+                                                class="btn btn-primary btn-link btn-sm">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button onclick="location.href='<?= '/admin/posts/'.$post['id'].'/removePost';?>'" type="button" rel="tooltip" title="Supprimer"
+                                                class="btn btn-danger btn-link btn-sm">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <?php foreach ($posts as $post):?>
-            <div class="demo-card-event mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
-                <div class="mdl-card__title mdl-card--expand">
-                    <div class="book-card-content">
-                        <h4><?= $post['title'] ?></h4>
-                        <!--<div class="book-card-info">
-                    <p><?/*= $book['id']; */?> <i class="material-icons">library_books</i></p>
-                    <p>3 <i class="material-icons">comments</i></p>
-                </div>-->
-                    </div>
-                </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <div class="flex-row">
-                        <a href=<?= '/admin/posts/'.$post['id'];?> class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                            <i class="material-icons">edit</i>
-                        </a>
-                        <a href=<?= '/admin/posts/'.$post['id'].'/removePost';?> class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                            <i class="material-icons">delete</i>
-                        </a>
-                    </div>
-                    <div class="mdl-layout-spacer"></div>
-                </div>
-            </div>
-        <?php endforeach; ?>
     </div>
-
-
 <?php
 $content = ob_get_clean();
 require 'template.php';

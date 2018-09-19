@@ -1,24 +1,39 @@
 <?php
-$view = 'Édition : '.$post['title'];
+$view = 'Épisodes';
 ob_start();
 ?>
-    <div class="mdl-grid demo-content">
-        <form class="tinymce-wrap" action=<?= '/admin/posts/'.$post['id'].'/editPost' ?> method="post">
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="title" name="title" value=<?= $post['title']; ?>>
-                    <label class="mdl-textfield__label" for="title">Titre</label>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">content_copy</i>
+                    </div>
+                    <h3 class="card-title">Mettre à jour un épisode</h3>
                 </div>
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    Enregister
-                </button>
-            </div>
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <textarea id="mce" name="content" ><?= $post['content']; ?></textarea>
+                <div class="card-body">
+                    <form action=<?= '/admin/posts/'.$post['id'].'/editPost' ?> method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Titre</label>
+                                    <input type="text" name="title" class="form-control" value="<?= $post['title']; ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea id="mce" name="content" ><?= htmlspecialchars($post['content']); ?></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary pull-right">Mettre à jour l'épisode</button>
+                        <div class="clearfix"></div>
 
+                    </form>
+                </div>
             </div>
-        </form>
-
+        </div>
     </div>
 <?php
 $content = ob_get_clean();

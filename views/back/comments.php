@@ -2,27 +2,49 @@
 $view = 'Commentaires';
 ob_start(); ?>
 
-    <div class="mdl-grid">
-        <?php foreach ($comments as $comment):?>
-            <div class="demo-card-event mdl-card mdl-shadow--2dp mdl-cell mdl-cell--3-col">
-                <div class="mdl-card__title mdl-card--expand">
-                    <div class="book-card-content">
-                        <p><?= $comment['author'];?></p>
-                        <p><?= $comment['comment'];?></p>
-                        <p><?= $comment['comment_date'];?></p>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-success">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">
+                                        <i class="material-icons">comments</i> Gestion des commentaires
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <div class="mdl-card__actions mdl-card--border">
-                    <a href=<?= '/admin/comments/'.$comment['id']; ?> class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                        Supprimer
-                    </a>
-                    <div class="mdl-layout-spacer"></div>
+                <div class="card-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="profile">
+                            <table class="table">
+                                <tbody>
+                                <?php foreach ($comments as $comment):?>
+                                    <tr>
+                                        <td><?= $comment['author']; ?></td>
+                                        <td><?= $comment['comment_date']; ?></td>
+                                        <td><?= substr($comment['comment'], 0, 50); ?></td>
+                                        <td class="td-actions text-right">
+                                            <button onclick="location.href='<?= '/admin/comments/'.$comment['id']; ?>'" type="button" rel="tooltip" title="Supprimer"
+                                                    class="btn btn-danger btn-link btn-sm">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        <?php endforeach; ?>
-
+        </div>
     </div>
-
 <?php
 $content = ob_get_clean();
 require 'template.php';

@@ -1,22 +1,39 @@
 <?php
-$view = 'Création : Nouvel épisode';
+$view = 'Épisodes';
 ob_start();
 ?>
-    <div class="mdl-grid demo-content">
-        <form class="tinymce-wrap" action='/admin/posts/createPost' method="post">
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" type="text" id="title" name="title" value="">
-                    <label class="mdl-textfield__label" for="title">Titre</label>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                    <div class="card-icon">
+                        <i class="material-icons">content_copy</i>
+                    </div>
+                    <h3 class="card-title">Ajouter un épisode</h3>
                 </div>
-                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                    Enregister
-                </button>
+                <div class="card-body">
+                    <form action="/admin/posts/createPost" method="post">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating">Titre</label>
+                                    <input type="text" name="title" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <textarea id="mce" name="content" ></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="btn btn-primary pull-right">Ajouter l'épisode</button>
+                        <div class="clearfix"></div>
+
+                    </form>
+                </div>
             </div>
-            <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
-                <textarea id="mce" name="content" ></textarea>
-            </div>
-        </form>
+        </div>
     </div>
 <?php
 $content = ob_get_clean();

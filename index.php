@@ -28,6 +28,9 @@ $router->post('/episode/:episodeId/addcomment', 'Single#addComment');
  */
 $router->get('/admin', 'Admin#home');
 $router->get('/admin/home', 'Admin#home');
+$router->get('/admin/users', 'Admin#getUsers');
+$router->post('/admin/users/createUser', 'Admin#createUser');
+$router->get('/admin/users/:id', 'Admin#removeUser');
 $router->get('/admin/comments', 'Admin#getComments');
 $router->get('/admin/comments/:comment_id', 'Admin#removeComment');
 

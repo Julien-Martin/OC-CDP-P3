@@ -38,6 +38,29 @@ class AdminController {
         require 'views/back/home.php';
     }
 
+    function getUsers(){
+        $users = $this->userManager->getUsers();
+        require 'views/back/users.php';
+    }
+
+    function createUser(){
+        $newUser = $this->userManager->createUser($_POST['username'], hash('sha256', $_POST['password']));
+        if($newUser === false){
+            throw new \Exception("Impossible d'ajouter l'utilisateur");
+        } else {
+            header('Location: /admin/users');
+        }
+    }
+
+    function removeUser($id){
+        $deleteUser = $this->userManager->removeUser($id);
+        if($deleteUser === false){
+            throw new \Exception("Impossible de supprimer l'utilisateur");
+        } else {
+            header('Location: /admin/users');
+        }
+    }
+
     /**
      * POSTS
      */
@@ -78,7 +101,6 @@ class AdminController {
     }
 
     function removePost($id){
-        $newPostId = count($this->postManager->getPosts()->fetchAll())+1;
         $deletePost = $this->postManager->removePost($id);
         if($deletePost === false){
             throw new \Exception("Impossible de supprimer le post");

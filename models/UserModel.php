@@ -6,7 +6,7 @@ class UserModel extends Manager {
 
   public function createUser($username, $password){
     $db = $this->dbConnection();
-    $req = $db->prepare('INSERT INTO users (username, password) VALUES (?, ?, ?)');
+    $req = $db->prepare('INSERT INTO users (username, password) VALUES (?, ?)');
     $req->execute(array($username, $password));
     return $req;
   }
