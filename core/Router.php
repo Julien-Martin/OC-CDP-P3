@@ -4,7 +4,7 @@ namespace Core;
 
 use Controllers\HomeController;
 use Controllers\SingleController;
-use Controllers\EpisodeController;
+use Controllers\PostController;
 
 class Router {
 
@@ -21,7 +21,7 @@ class Router {
     {
         $homeController = new HomeController();
         $singleController = new SingleController();
-        $episodeController = new EpisodeController();
+        $episodeController = new PostController();
         try {
             if(isset($_GET['action'])){
                 if($_GET['action'] == 'books'){

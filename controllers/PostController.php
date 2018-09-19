@@ -2,14 +2,14 @@
 
 namespace Controllers;
 
-use Models\EpisodeModel;
+use Models\PostModel;
 
-class EpisodeController {
+class PostController {
 
     public function getEpisodes($bookId){
-        $episodeManager = new EpisodeModel();
+        $episodeManager = new PostModel();
         $episodes = $episodeManager->getEpisodes($bookId);
 
-        require 'views/front/episodes.php';
+        require 'views/front/posts.php';
     }
 }

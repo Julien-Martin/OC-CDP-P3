@@ -3,7 +3,6 @@
 namespace Controllers;
 
 use Models\PostModel;
-use Models\EpisodeModel;
 use Models\CommentModel;
 
 class SingleController {
@@ -12,23 +11,24 @@ class SingleController {
     public $episodeManager;
     public $commentManager;
 
-    function getEpisode($bookId, $episodeId){
-        $this->episodeManager = new EpisodeModel();
+    function getPost($id){
+        $this->postManager = new PostModel();
         $this->commentManager = new CommentModel();
-
-        $episode = $this->episodeManager->getEpisode($bookId, $episodeId);
-        $comments = $this->commentManager->getComments($episodeId);
-        $total = count($this->episodeManager->getEpisodes($bookId)->fetchAll());
+        $posts = $this->postManager->getPosts()->fetchAll();
+        $post = $this->postManager->getPost($id);
+        $comments = $this->commentManager->getComments($id);
+        $total = count($this->postManager->getPosts()->fetchAll());
+        $key = array_search($post['id'], array_column($posts, 'id'));
         require 'views/front/single.php';
     }
 
-    function addComment($bookId, $episodeId){
+    function addComment($id){
         $this->commentManager = new CommentModel();
-        $newComment = $this->commentManager->postComment($episodeId, $_POST['author'], $_POST['comment']);
+        $newComment = $this->commentManager->postComment($id, $_POST['author'], $_POST['comment']);
         if($newComment === false){
             throw new \Exception("Impossible d'ajouter le commentaire");
         } else {
-            header('Location: /book/'.$bookId.'/episode/'.$episodeId);
+            header('Location: /episode/'.$id);
         }
     }
 }

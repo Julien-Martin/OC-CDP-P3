@@ -1,9 +1,9 @@
 <?php
-$view = $book['title']. ' : Nouvel épisode';
+$view = 'Création : Nouvel épisode';
 ob_start();
 ?>
     <div class="mdl-grid demo-content">
-        <form class="tinymce-wrap" action=<?= '/admin/episodes/'.$book['id'].'/postEpisode' ?> method="post">
+        <form class="tinymce-wrap" action='/admin/posts/createPost' method="post">
             <div class="demo-charts mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <input class="mdl-textfield__input" type="text" id="title" name="title" value="">

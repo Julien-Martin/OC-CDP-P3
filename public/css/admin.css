@@ -30,6 +30,20 @@ html, body {
     background-color: rgb(76, 175, 80);
 }
 
+.flex-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+}
+
+.flex-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
 .book-card-content a i {
     font-size: 72px;
 }

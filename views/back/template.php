@@ -61,7 +61,7 @@
         <div class="demo-drawer mdl-layout__drawer mdl-color--blue-grey-900 mdl-color-text--blue-grey-50">
             <nav class="demo-navigation mdl-navigation mdl-color--blue-grey-800">
                 <a class="mdl-navigation__link" href="/admin/home"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">home</i>Accueil</a>
-                <a class="mdl-navigation__link" href="/admin/books"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">book</i>Livres</a>
+                <a class="mdl-navigation__link" href="/admin/posts"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">library_books</i>Épisodes</a>
                 <a class="mdl-navigation__link" href="/admin/comments"><i class="mdl-color-text--blue-grey-400 material-icons" role="presentation">comment</i>Commentaires</a>
             </nav>
         </div>

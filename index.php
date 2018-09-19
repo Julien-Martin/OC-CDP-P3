@@ -4,7 +4,7 @@ use Core\Autoloader;
 use Core\Router;
 use Controllers\HomeController;
 use Controllers\SingleController;
-use Controllers\EpisodeController;
+use Controllers\PostController;
 
 
 error_reporting(E_ALL);
@@ -19,23 +19,23 @@ $router = new Router($_GET['url']);
 /**
  * FRONT ROUTING
  */
-$router->get('/', 'Home#getBooks');
-$router->get('/book/:bookId', 'Episode#getEpisodes');
-$router->get('/book/:bookId/episode/:episodeId', 'Single#getEpisode');
-$router->post('/book/:bookId/episode/:episodeId/addcomment', 'Single#addComment');
+$router->get('/', 'Home#getPosts');
+$router->get('/episode/:id', 'Single#getPost');
+$router->post('/episode/:episodeId/addcomment', 'Single#addComment');
 
 /**
  * BACK ROUTING
  */
 $router->get('/admin', 'Admin#home');
 $router->get('/admin/home', 'Admin#home');
-$router->get('/admin/books', 'Admin#getBooks');
 $router->get('/admin/comments', 'Admin#getComments');
 $router->get('/admin/comments/:comment_id', 'Admin#removeComment');
-$router->get('/admin/episodes/:bookId', 'Admin#getEpisodes');
-$router->get('/admin/episodes/:bookId/newEpisode', 'Admin#newEpisode');
-$router->get('/admin/episodes/:bookId/:episodeId', 'Admin#getEpisode');
-$router->post('/admin/episodes/:bookId/postEpisode', 'Admin#postEpisode');
-$router->post('/admin/episodes/:bookId/:episodeId/editEpisode', 'Admin#editEpisode');
+
+$router->get('/admin/posts', 'Admin#getPosts');
+$router->get('/admin/posts/:id/removePost', 'Admin#removePost');
+$router->get('/admin/posts/newPost', 'Admin#newPost');
+$router->get('/admin/posts/:id', 'Admin#getPost');
+$router->post('/admin/posts/createPost', 'Admin#createPost');
+$router->post('/admin/posts/:id/editPost', 'Admin#editPost');
 
 $router->run();

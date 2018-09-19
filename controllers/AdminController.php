@@ -9,93 +9,97 @@
 namespace Controllers;
 
 use Models\CommentModel;
-use Models\EpisodeModel;
+use Models\PostModel;
 use Models\UserModel;
-use Models\BookModel;
 
 class AdminController {
 
     private $userManager;
-    private $bookManager;
-    private $episodeManager;
+    private $postManager;
     private $commentManager;
     private $view;
 
     /**
      * AdminController constructor.
      * @param $userManager
-     * @param $bookManager
      * @param $commentManager
      */
     public function __construct()
     {
         $this->userManager = new UserModel();
-        $this->bookManager = new BookModel();
         $this->commentManager = new CommentModel();
-        $this->episodeManager = new EpisodeModel();
+        $this->postManager = new PostModel();
     }
 
 
     function home(){
-        $booksNumber = count($this->bookManager->getBooks()->fetchAll());
+        $postNumber = count($this->postManager->getPosts()->fetchAll());
         $commentsNumber = count($this->commentManager->getAllComments()->fetchAll());
         require 'views/back/home.php';
     }
 
-    function getBooks(){
-        $books = $this->bookManager->getBooks();
-        require_once 'views/back/books.php';
+    /**
+     * POSTS
+     */
+    function getPosts(){
+        $posts = $this->postManager->getPosts()->fetchAll();
+        require 'views/back/posts.php';
     }
 
+    function getPost($id){
+        $post = $this->postManager->getPost($id);
+        require 'views/back/single.php';
+    }
+
+    function newPost(){
+        require 'views/back/create.php';
+    }
+
+    function createPost(){
+        $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
+        $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
+        $episode = $this->postManager->createPost($_POST['title'], strip_tags(stripslashes($_POST['content']), $allowTags));
+        if($episode === false){
+            throw new \Exception("Impossible d'ajouter l'épisode");
+        } else {
+            header('Location: /admin/posts');
+        }
+    }
+
+    function editPost($id){
+        $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
+        $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
+        $episode = $this->postManager->updatePost($id, $_POST['title'], strip_tags(stripslashes($_POST['content']), $allowTags), $id);
+        if($episode === false){
+            throw new \Exception("Impossible d'ajouter l'épisode");
+        } else {
+            header('Location: /admin/posts/'.$id);
+        }
+    }
+
+    function removePost($id){
+        $newPostId = count($this->postManager->getPosts()->fetchAll())+1;
+        $deletePost = $this->postManager->removePost($id);
+        if($deletePost === false){
+            throw new \Exception("Impossible de supprimer le post");
+        } else {
+            header('Location: /admin/posts');
+        }
+    }
+
+
+    /**
+     * COMMENTS
+     */
     function getComments(){
         $comments = $this->commentManager->getAllComments();
         require 'views/back/comments.php';
     }
 
-    function getEpisodes($bookId){
-        $book = $this->bookManager->getBook($bookId);
-        $episodes = $this->episodeManager->getEpisodes($bookId);
-        require 'views/back/episodes.php';
-    }
-
-    function getEpisode($bookId, $episodeId){
-        $book = $this->bookManager->getBook($bookId);
-        $episode = $this->episodeManager->getEpisode($bookId, $episodeId);
-        require 'views/back/single.php';
-    }
-
-    function newEpisode($bookId){
-        $book = $this->bookManager->getBook($bookId);
-        require 'views/back/create.php';
-    }
-
-    function postEpisode($bookId){
-        $episodeId = count($this->episodeManager->getEpisodes($bookId)->fetchAll())+1;
-        $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
-        $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
-        $episode = $this->episodeManager->createEpisode($episodeId, $_POST['title'], strip_tags(stripslashes($_POST['content']), $allowTags), $bookId);
-        if($episode === false){
-            throw new \Exception("Impossible d'ajouter l'épisode");
-        } else {
-            header('Location: /admin/episodes/'.$bookId.'/'.$episodeId);
-        }
-    }
-
-    function editEpisode($bookId, $episodeId){
-        $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
-        $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
-        $episode = $this->episodeManager->updateEpisode($episodeId, $_POST['title'], strip_tags(stripslashes($_POST['content']), $allowTags), $bookId);
-        if($episode === false){
-            throw new \Exception("Impossible d'ajouter l'épisode");
-        } else {
-            header('Location: /admin/episodes/'.$bookId.'/'.$episodeId);
-        }
-    }
-
     function removeComment($comment_id){
         $deleteComment = $this->commentManager->removeComment($comment_id);
         if($deleteComment === false){
-            throw new \Exception("Impossible d'ajouter le commentaire");
+            throw new \Exception("Impossible de supprimer le commentaire");
         } else {
             header('Location: /admin/comments');
         }
