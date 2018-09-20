@@ -19,9 +19,13 @@ class Manager {
      * @return \PDO
      */
     protected function dbConnection(){
-        $db = new \PDO('mysql:host='.$this->_host.';dbname='.$this->_dbname.';charset=utf8', $this->_username, $this->_password);
-        $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
-        return $db;
+        try {
+            $db = new \PDO('mysql:host='.$this->_host.';dbname='.$this->_dbname.';charset=utf8', $this->_username, $this->_password);
+            $db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_WARNING);
+            return $db;
+        } catch (\PDOException $e){
+            var_dump('Impossible de se connecter à la base de donnée : '. $e->getMessage());
+        }
     }
 
 }

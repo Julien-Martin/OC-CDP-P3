@@ -26,10 +26,8 @@ ob_start(); ?>
                                 <tbody>
                                 <?php foreach ($comments as $comment): ?>
                                     <?php
-                                    if($comment['reported']){
-                                        $id = $comment['id'];
-                                        $href = "location.href='/admin/comments/$id/unreported'";
-                                        $report = '<button onclick='.$href.' type="button" rel="tooltip" title="Enlever le signalement" class="btn btn-danger btn-link btn-sm"><i class="material-icons">warning</i></button>';
+                                    if ($comment['reported']) {
+                                        $report = '<button type="submit" rel="tooltip" title="Enlever le signalement" class="btn btn-danger btn-link btn-sm"><i class="material-icons">warning</i></button>';
                                     } else {
                                         $report = '';
                                     }
@@ -40,12 +38,14 @@ ob_start(); ?>
                                         <td><?= $comment['comment_date']; ?></td>
                                         <td><?= substr($comment['comment'], 0, 50); ?></td>
                                         <td class="td-actions text-right">
-                                            <button onclick="location.href='<?= '/admin/comments/' . $comment['id']; ?>'"
-                                                    type="button" rel="tooltip" title="Supprimer"
-                                                    class="btn btn-danger btn-link btn-sm">
-                                                <i class="material-icons">close</i>
-                                            </button>
-                                            <?= $report; ?>
+                                            <form action=<?= '/admin/comments/' . $comment['id']; ?> method="post">
+                                                <button type="submit" rel="tooltip" title="Supprimer" class="btn btn-danger btn-link btn-sm">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </form>
+                                            <form action=<?= '/admin/comments/'.$comment['id'].'/unreported' ?> method="post">
+                                                <?= $report; ?>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
