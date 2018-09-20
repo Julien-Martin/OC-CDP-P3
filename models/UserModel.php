@@ -39,4 +39,11 @@ class UserModel extends Manager {
     return $req;
   }
 
+  public function checkLogin($username, $password){
+      $db = $this->dbConnection();
+      $req = $db->prepare('SELECT id FROM users WHERE username=? AND password=?');
+      $req->execute(array($username, $password));
+      return $req;
+  }
+
 }

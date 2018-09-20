@@ -29,8 +29,9 @@ class AdminController {
         $this->userManager = new UserModel();
         $this->commentManager = new CommentModel();
         $this->postManager = new PostModel();
+        session_start();
+        if(!isset($_SESSION['login'])){header('Location: /');}
     }
-
 
     function home(){
         $postNumber = count($this->postManager->getPosts()->fetchAll());
