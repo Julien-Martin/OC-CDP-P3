@@ -33,10 +33,12 @@ ob_start();
                                                 class="btn btn-primary btn-link btn-sm">
                                             <i class="material-icons">edit</i>
                                         </button>
-                                        <button onclick="location.href='<?= '/admin/posts/'.$post['id'].'/removePost';?>'" type="button" rel="tooltip" title="Supprimer"
-                                                class="btn btn-danger btn-link btn-sm">
-                                            <i class="material-icons">close</i>
-                                        </button>
+                                        <form action=<?= '/admin/posts/'.$post['id'].'/removePost';?> method="post">
+                                            <button type="submit" rel="tooltip" title="Supprimer"
+                                                    class="btn btn-danger btn-link btn-sm">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>

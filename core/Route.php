@@ -3,6 +3,10 @@
 namespace Core;
 
 
+/**
+ * Class Route
+ * @package Core
+ */
 class Route {
 
     private $path;
@@ -10,12 +14,22 @@ class Route {
     private $matches = [];
 
 
+    /**
+     * Route constructor.
+     * @param $path
+     * @param $callable
+     */
     public function __construct($path, $callable)
     {
         $this->path = trim($path, '/');
         $this->callable = $callable;
     }
 
+    /**
+     * Compare if url match with register route
+     * @param $url
+     * @return bool
+     */
     public function match($url){
         $url = trim($url, '/');
         $path = preg_replace('#:([\w]+)#', '([^/]+)', $this->path);
@@ -28,6 +42,10 @@ class Route {
         return true;
     }
 
+    /**
+     * Call controller by namespace
+     * @return mixed
+     */
     public function call(){
         if(is_string($this->callable)){
             $params = explode('#', $this->callable);
@@ -38,13 +56,4 @@ class Route {
             return call_user_func_array($this->callable, $this->matches);
         }
     }
-
-    public function getUrl($params){
-        $path = $this->path;
-        foreach($params as $k => $v){
-            $path = str_replace(":$k", $v, $path);
-        }
-        return $path;
-    }
-
 }

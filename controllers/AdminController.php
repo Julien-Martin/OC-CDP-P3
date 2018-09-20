@@ -12,12 +12,15 @@ use Models\CommentModel;
 use Models\PostModel;
 use Models\UserModel;
 
+/**
+ * Class AdminController
+ * @package Controllers
+ */
 class AdminController {
 
     private $userManager;
     private $postManager;
     private $commentManager;
-    private $view;
 
     /**
      * AdminController constructor.
@@ -29,21 +32,31 @@ class AdminController {
         $this->userManager = new UserModel();
         $this->commentManager = new CommentModel();
         $this->postManager = new PostModel();
-        session_start();
         if(!isset($_SESSION['login'])){header('Location: /');}
     }
 
+    /**
+     * Get data and passing to HomeView
+     */
     function home(){
         $postNumber = count($this->postManager->getPosts()->fetchAll());
         $commentsNumber = count($this->commentManager->getAllComments()->fetchAll());
+        $reportedNumber = $this->commentManager->countReported()->fetch()['reportedNumber'];
         require 'views/back/home.php';
     }
 
+    /**
+     * Get all users and passing to Users View
+     */
     function getUsers(){
         $users = $this->userManager->getUsers();
         require 'views/back/users.php';
     }
 
+    /**
+     * Get data from post and passing to model
+     * @throws \Exception
+     */
     function createUser(){
         $newUser = $this->userManager->createUser($_POST['username'], hash('sha256', $_POST['password']));
         if($newUser === false){
@@ -53,6 +66,11 @@ class AdminController {
         }
     }
 
+    /**
+     * Send action to model to remove user
+     * @param $id
+     * @throws \Exception
+     */
     function removeUser($id){
         $deleteUser = $this->userManager->removeUser($id);
         if($deleteUser === false){
@@ -62,23 +80,35 @@ class AdminController {
         }
     }
 
+
     /**
-     * POSTS
+     * Get all posts and passing data to posts view
      */
     function getPosts(){
         $posts = $this->postManager->getPosts()->fetchAll();
         require 'views/back/posts.php';
     }
 
+    /**
+     * Get one post to edit
+     * @param $id
+     */
     function getPost($id){
         $post = $this->postManager->getPost($id);
         require 'views/back/single.php';
     }
 
+    /**
+     *  Redirect to view for creating user
+     */
     function newPost(){
         require 'views/back/create.php';
     }
 
+    /**
+     * Get TinyMCE data and send to Model (INSERT)
+     * @throws \Exception
+     */
     function createPost(){
         $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
@@ -90,6 +120,11 @@ class AdminController {
         }
     }
 
+    /**
+     * Get TinyMCE data and send to Model (UPDATE)
+     * @param $id
+     * @throws \Exception
+     */
     function editPost($id){
         $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
         $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
@@ -101,6 +136,11 @@ class AdminController {
         }
     }
 
+    /**
+     * Get post deleted and send to Model (DELETE)
+     * @param $id
+     * @throws \Exception
+     */
     function removePost($id){
         $deletePost = $this->postManager->removePost($id);
         if($deletePost === false){
@@ -112,13 +152,18 @@ class AdminController {
 
 
     /**
-     * COMMENTS
+     * Get all comments and passing data to comments view
      */
     function getComments(){
         $comments = $this->commentManager->getAllComments();
         require 'views/back/comments.php';
     }
 
+    /**
+     * Remove comment action and send to Model (DELETE)
+     * @param $comment_id
+     * @throws \Exception
+     */
     function removeComment($comment_id){
         $deleteComment = $this->commentManager->removeComment($comment_id);
         if($deleteComment === false){
@@ -128,8 +173,12 @@ class AdminController {
         }
     }
 
+    /**
+     * Change state of reported to false (Comment is not reported)
+     * @param $commentId
+     * @throws \Exception
+     */
     function unreportComment($commentId){
-        $this->commentManager = new CommentModel();
         $unreportComment = $this->commentManager->reportComment(0, $commentId);
         if($unreportComment === false){
             throw new \Exception("Impossible de signaler le commentaire");

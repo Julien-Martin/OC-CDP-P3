@@ -59,9 +59,11 @@ ob_start(); ?>
                                     <tr>
                                         <td><?= $user['username']; ?></td>
                                         <td class="td-actions text-right">
-                                            <button onclick="location.href='<?= '/admin/users/'.$user['id']; ?>'" type="button" rel="tooltip" title="Supprimer" class="btn btn-danger btn-link btn-sm">
-                                                <i class="material-icons">close</i>
-                                            </button>
+                                            <form action=<?= '/admin/users/'.$user['id']; ?> method="post">
+                                                <button type="submit" rel="tooltip" title="Supprimer" class="btn btn-danger btn-link btn-sm">
+                                                    <i class="material-icons">close</i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>

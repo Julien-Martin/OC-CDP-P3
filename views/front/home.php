@@ -4,8 +4,7 @@
         <div class="titan-caption">
             <div class="caption-content">
                 <div class="font-alt mb-30 titan-title-size-1">Un roman épisodique</div>
-                <div class="font-alt mb-40 titan-title-size-3">"Billet simple pour l'Alaska"</span>
-                </div>
+                <div class="font-alt mb-40 titan-title-size-3">"Billet simple pour l'Alaska"</div>
             </div>
         </div>
     </section>
@@ -16,7 +15,10 @@
                 <?php foreach ($posts as $post): ?>
                     <div class="col-sm-6 col-md-3 col-lg-3">
                         <div class="post">
-                            <div class="post-thumbnail"><a href=<?= '/episode/'.$post['id'];?>><img src="/public/img/post-1.jpg" alt="Blog-post Thumbnail"/></a></div>
+                            <?php
+                                $imageId = array_search($post['id'], array_column($posts, 'id'))+1;
+                            ?>
+                            <div class="post-thumbnail"><a href=<?= '/episode/'.$post['id'];?>><img src=<?= '/public/img/thumbnails/'.$imageId.'.jpg'; ?> alt="Blog-post Thumbnail"/></a></div>
                             <div class="post-header font-alt">
                                 <h2 class="post-title"><a href=<?= '/episode/'.$post['id'];?>><?= $post['title'] ?></a></h2>
                                 <div class="post-meta"> <?= $post['creation_date'] ?>
