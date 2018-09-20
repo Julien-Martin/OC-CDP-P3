@@ -36,7 +36,7 @@ ob_start(); ?>
                                     <tr>
                                         <td><?= $comment['author']; ?></td>
                                         <td><?= $comment['comment_date']; ?></td>
-                                        <td><?= substr($comment['comment'], 0, 50); ?></td>
+                                        <td class="td-text"><?= $comment['comment'] ?></td>
                                         <td class="td-actions text-right">
                                             <form action=<?= '/admin/comments/' . $comment['id']; ?> method="post">
                                                 <button type="submit" rel="tooltip" title="Supprimer" class="btn btn-danger btn-link btn-sm">

@@ -27,11 +27,8 @@ ob_start();
                                 <?php foreach ($posts as $post):?>
                                 <tr>
                                     <td><?= $post['title']; ?></td>
-                                    <td><?= substr($post['content'], 0, 50); ?></td>
                                     <td class="td-actions text-right">
-                                        <button onclick="location.href='<?= '/admin/posts/'.$post['id'];?>'" type="button" rel="tooltip" title="Editer"
-                                                class="btn btn-primary btn-link btn-sm">
-                                            <i class="material-icons">edit</i>
+                                        <button onclick="location.href='<?= '/admin/posts/'.$post['id'];?>'" type="button" rel="tooltip" title="Editer" class="btn btn-primary btn-link btn-sm"><i class="material-icons">edit</i>
                                         </button>
                                         <form action=<?= '/admin/posts/'.$post['id'].'/removePost';?> method="post">
                                             <button type="submit" rel="tooltip" title="Supprimer"

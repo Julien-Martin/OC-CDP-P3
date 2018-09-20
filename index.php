@@ -26,13 +26,16 @@ $router->get('/episode/reportComment/:episodeId/:commentId', 'Single#reportComme
 
 //POST METHOD
 $router->post('/episode/:episodeId/addcomment', 'Single#addComment');
-$router->post('/login', 'User#validateLogin');
 
 /**
  * LOGIN AND LOGOUT ROUTES
  */
 $router->get('/login', 'User#loginPage');
 $router->get('/logout', 'User#logout');
+$router->post('/login', 'User#validateLogin');
+$router->get('/error/:errorMsg', function($errorMsg){
+    require 'views/front/error.php';
+});
 
 /**
  * BACK ROUTING
@@ -42,25 +45,25 @@ session_start();
 if(isset($_SESSION['login'])){
     //GET METHOD
     $router->get('/admin', 'Admin#home');
-    $router->get('/admin/users', 'Admin#getUsers');
-    $router->get('/admin/comments', 'Admin#getComments');
+
+    $router->get('/admin/posts/newPost', 'Admin#newPost');
     $router->get('/admin/posts', 'Admin#getPosts');
     $router->get('/admin/posts/:id', 'Admin#getPost');
-    $router->get('/admin/posts/newPost', 'Admin#newPost');
 
     //POST METHOD
     $router->post('/admin/posts/createPost', 'Admin#createPost');
     $router->post('/admin/posts/:id/editPost', 'Admin#editPost');
     $router->post('/admin/posts/:id/removePost', 'Admin#removePost');
-    $router->post('/admin/comments/:comment_id', 'Admin#removeComment');
+
+    $router->get('/admin/comments', 'Admin#getComments');
     $router->post('/admin/comments/:comment_id/unreported', 'Admin#unreportComment');
-    $router->post('/admin/users/:id', 'Admin#removeUser');
+    $router->post('/admin/comments/:comment_id', 'Admin#removeComment');
+
+    $router->get('/admin/users', 'Admin#getUsers');
     $router->post('/admin/users/createUser', 'Admin#createUser');
+    $router->post('/admin/users/:id', 'Admin#removeUser');
 }
 
-$router->get('/error/:errorMsg', function($errorMsg){
-    require 'views/front/error.php';
-});
 
 //Start the routing
 try {
