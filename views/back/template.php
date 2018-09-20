@@ -12,9 +12,9 @@
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="/public/css/material-dashboard.min.css" rel="stylesheet"/>
-    <link href="/public/css/admin.css" rel="stylesheet"/>
-    <script src="/public/js/tinymce/tinymce.min.js"></script>
+    <link href="/public/css/back/material-dashboard.min.css" rel="stylesheet"/>
+    <link href="/public/css/back/admin.css" rel="stylesheet"/>
+    <script src="/public/js/back/tinymce/tinymce.min.js"></script>
     <script>
         tinymce.init({
             selector: '#mce',
@@ -95,13 +95,13 @@
         </div>
     </div>
 </div>
-<script src="/public/js/core/jquery.min.js" type="text/javascript"></script>
-<script src="/public/js/core/popper.min.js" type="text/javascript"></script>
-<script src="/public/js/core/bootstrap-material-design.min.js" type="text/javascript"></script>
-<script src="/public/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<script src="/public/js/plugins/chartist.min.js"></script>
-<script src="/public/js/plugins/bootstrap-notify.js"></script>
-<script src="/public/js/material-dashboard.min.js?" type="text/javascript"></script>
+<script src="/public/js/back/core/jquery.min.js" type="text/javascript"></script>
+<script src="/public/js/back/core/popper.min.js" type="text/javascript"></script>
+<script src="/public/js/back/core/bootstrap-material-design.min.js" type="text/javascript"></script>
+<script src="/public/js/back/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="/public/js/back/plugins/chartist.min.js"></script>
+<script src="/public/js/back/plugins/bootstrap-notify.js"></script>
+<script src="/public/js/back/material-dashboard.min.js?" type="text/javascript"></script>
 <script>
     $(document).ready(function () {
         // Javascript method's body can be found in assets/js/demos.js

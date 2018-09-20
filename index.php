@@ -20,6 +20,7 @@ $router->get('/login', 'User#loginPage');
 $router->post('/login', 'User#validateLogin');
 $router->get('/episode/:id', 'Single#getPost');
 $router->post('/episode/:episodeId/addcomment', 'Single#addComment');
+$router->get('/episode/reportComment/:episodeId/:commentId/:reported', 'Single#reportComment');
 
 /**
  * BACK ROUTING

@@ -1,36 +1,37 @@
 <?php ob_start(); ?>
-    <div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
-        <main class="mdl-layout__content">
-            <div class="demo-blog__posts mdl-grid">
-                <?php
-                while($data = $posts->fetch()) {
-                    ?>
-                    <div class="mdl-card coffee-pic mdl-cell mdl-cell--6-col">
-                        <div class="mdl-card__media mdl-color-text--grey-50">
-                            <h3><a href=<?= "/episode/".$data['id']; ?>><?= htmlspecialchars($data['title']); ?></a></h3>
-                        </div>
-                        <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
-                            <div class="minilogo"></div>
-                            <div>
-                                <span><?= $data['creation_date']; ?></span>
+    <section class="home-section home-parallax home-fade home-full-height bg-dark-60 agency-page-header" id="home"
+             data-background="/public/img/alaska.jpg">
+        <div class="titan-caption">
+            <div class="caption-content">
+                <div class="font-alt mb-30 titan-title-size-1">Un roman épisodique</div>
+                <div class="font-alt mb-40 titan-title-size-3">"Billet simple pour l'Alaska"</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="main">
+    <section class="module">
+        <div class="container">
+            <div class="row multi-columns-row post-columns">
+                <?php foreach ($posts as $post): ?>
+                    <div class="col-sm-6 col-md-3 col-lg-3">
+                        <div class="post">
+                            <div class="post-thumbnail"><a href=<?= '/episode/'.$post['id'];?>><img src="/public/img/post-1.jpg" alt="Blog-post Thumbnail"/></a></div>
+                            <div class="post-header font-alt">
+                                <h2 class="post-title"><a href=<?= '/episode/'.$post['id'];?>><?= $post['title'] ?></a></h2>
+                                <div class="post-meta"> <?= $post['creation_date'] ?>
+                                </div>
                             </div>
+                            <div class="post-entry">
+                                <p><?= substr($post['content'], 0, 50); ?></p>
+                            </div>
+                            <div class="post-more"><a class="more-link" href=<?= '/episode/'.$post['id'];?>>Lire</a></div>
                         </div>
                     </div>
-                    <?php
-                    }
-                ?>
-                <!--<nav class="demo-nav mdl-cell mdl-cell--12-col">
-                    <div class="section-spacer"></div>
-                    <a href="single.php" class="demo-nav__button" title="show more">
-                        More
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                            <i class="material-icons" role="presentation">arrow_forward</i>
-                        </button>
-                    </a>
-                </nav>-->
+                <?php endforeach; ?>
             </div>
-<?php
-$posts->closeCursor();
-$content = ob_get_clean();
+        </div>
+    </section>
+<?php $content = ob_get_clean();
 require 'template.php';
 ?>

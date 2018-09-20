@@ -1,112 +1,92 @@
 <?php ob_start(); ?>
-<div class="demo-blog demo-blog--blogpost mdl-layout mdl-js-layout has-drawer is-upgraded">
-    <main class="mdl-layout__content">
-        <div class="demo-back">
-            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" href="/" title="go back"
-               role="button">
-                <i class="material-icons" role="presentation">arrow_back</i>
-            </a>
-        </div>
-        <div class="demo-blog__posts mdl-grid">
-            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
-                <div class="mdl-card__media mdl-color-text--grey-50">
-                    <h3><?= $post['title']; ?></h3>
-                </div>
-                <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
-                    <div class="minilogo"></div>
-                    <div>
-                        <span><?= $post['creation_date']; ?></span>
-                    </div>
-                    <div class="section-spacer"></div>
-                    <div class="meta__favorites">
-                        425 <i class="material-icons" role="presentation">favorite</i>
-                        <span class="visuallyhidden">favorites</span>
-                    </div>
-                    <div>
-                        <i class="material-icons" role="presentation">bookmark</i>
-                        <span class="visuallyhidden">bookmark</span>
-                    </div>
-                    <div>
-                        <i class="material-icons" role="presentation">share</i>
-                        <span class="visuallyhidden">share</span>
-                    </div>
-                </div>
-                <div class="mdl-color-text--grey-700 mdl-card__supporting-text">
-                    <p><?= $post['content']; ?></p>
-                </div>
-                <div class="mdl-color-text--primary-contrast mdl-card__supporting-text comments">
-                    <form action=<?= '/episode/'.$post['id'].'/addComment' ?> method="post">
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="author" name="author">
-                            <label class="mdl-textfield__label" for="author">Nom</label>
+    <div class="main">
+    <section class="module-small">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="post">
+                        <div class="post-header font-alt">
+                            <h1 class="post-title"><?= $post['title']; ?></h1>
+                            <div class="post-meta"><?= "Par Jean Forteroche | " . $post['creation_date'] . " | " . $commentsNumber . " commentaire(s)" ?></div>
                         </div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                            <input class="mdl-textfield__input" type="text" id="comment" name="comment">
-                            <label class="mdl-textfield__label" for="comment">Commentaire</label>
+                        <div class="post-entry">
+                            <p><?= $post['content']; ?></p>
                         </div>
-                        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                            <i class="material-icons" role="presentation">check</i><span class="visuallyhidden">add comment</span>
-                        </button>
-                    </form>
-                    <?php
-                    while ($data = $comments->fetch()) {
-                        ?>
-                        <div class="comment mdl-color-text--grey-700">
-                            <header class="comment__header">
-                                <img src="/public/img/co1.jpg" class="comment__avatar">
-                                <div class="comment__author">
-                                    <strong><?= $data['author']; ?></strong>
-                                    <span><?= $data['comment_date']; ?></span>
+                    </div>
+                    <div class="comments">
+                        <h4 class="comment-title font-alt"><?= "Il y a " . $commentsNumber . " commentaire(s)"; ?></h4>
+                        <?php foreach ($comments as $comment): ?>
+                            <div class="comment clearfix">
+                                <div class="comment-content clearfix">
+                                    <div class="comment-author font-alt"><a href="#"><?= $comment['author']; ?></a>
+                                    </div>
+                                    <div class="comment-body">
+                                        <p><?= $comment['comment']; ?></p>
+                                    </div>
+                                    <div class="comment-meta font-alt">
+                                        <?= $comment['comment_date']; ?>
+                                        <a href=<?= '/episode/reportComment/'.$post['id'].'/'.$comment['id'].'/1'; ?>>Signaler</a>
+                                    </div>
                                 </div>
-                            </header>
-                            <div class="comment__text"><?= $data['comment']; ?></div>
-                            <nav class="comment__actions">
-                                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                                    <i class="material-icons" role="presentation">thumb_up</i><span
-                                            class="visuallyhidden">like comment</span>
-                                </button>
-                            </nav>
-                        </div>
-                        <?php
-                    }
-                    ?>
-                </div>
-            </div>
-            <nav class="demo-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
-                <?php
-                    if($key+1 != 1 && $key+1 <= $total) {
-                        $previousPage = $previousPage = $posts[array_search($post['id'], array_column($posts, 'id'))-1]['id'];;
-                        echo '<a href=/episode/'. $previousPage.' class="demo-nav__button">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="comment-form">
+                        <h4 class="comment-form-title font-alt">Ajouter un commentaire</h4>
+                        <form action=<?= '/episode/' . $post['id'] . '/addComment' ?> method="post">
+                            <div class="form-group">
+                                <label class="sr-only" for="name">Nom</label>
+                                <input class="form-control" id="name" type="text" name="author" placeholder="Nom"/>
+                            </div>
+                            <div class="form-group">
+                                    <textarea class="form-control" id="comment" name="comment" rows="4"
+                                              placeholder="Commentaire"></textarea>
+                            </div>
+                            <button class="btn btn-round btn-d" type="submit">Publier le commentaire</button>
+                        </form>
+                    </div>
+                    <div class="comment-form">
+                        <h4 class="comment-form-title font-alt">Pagination</h4>
+                        <div class="custom-pagination">
+                            <div class="custom-pagination-element">
+                                <?php
+                                if ($key + 1 != 1 && $key + 1 <= $total) {
+                                    $previousPage = $previousPage = $posts[array_search($post['id'], array_column($posts, 'id')) - 1]['id'];;
+                                    echo '<a href=/episode/' . $previousPage . ' class="demo-nav__button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
                                     <i class="material-icons">arrow_back</i>
                                 </button>
-                                Épisode '.$key.'
+                                Épisode ' . $key . '
                             </a>';
-                    }
-                ?>
-
-
-                <div class="section-spacer"></div>
-
-                <?php
-                    if($key+1 != $total && $key+1 < $total){
-                        $nextPage = $posts[array_search($post['id'], array_column($posts, 'id'))+1]['id'];
-                        $url = '/episode/'.$nextPage;
-                        echo '<a href=/episode/'.$nextPage.' class="demo-nav__button">
-                                Épisode '.($key+2).'
+                                }
+                                ?>
+                            </div>
+                            <div class="section-spacer"></div>
+                            <div class="custom-pagination-element">
+                                <?php
+                                if ($key + 1 != $total && $key + 1 < $total) {
+                                    $nextPage = $posts[array_search($post['id'], array_column($posts, 'id')) + 1]['id'];
+                                    $url = '/episode/' . $nextPage;
+                                    echo '<a href=/episode/' . $nextPage . ' class="demo-nav__button">
+                                Épisode ' . ($key + 2) . '
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
                                     <i class="material-icons">arrow_forward</i>
                                 </button>
                             </a>';
-                    }
-                ?>
+                                }
+                                ?>
+                            </div>
 
-            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
-        <?php
-        $content = ob_get_clean();
-        require 'template.php';
-        ?>
+    </section>
 
+<?php $content = ob_get_clean();
+require 'template.php'
+?>

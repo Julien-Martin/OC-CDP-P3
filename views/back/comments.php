@@ -24,16 +24,19 @@ ob_start(); ?>
                         <div class="tab-pane active" id="profile">
                             <table class="table">
                                 <tbody>
-                                <?php foreach ($comments as $comment):?>
+                                <?php foreach ($comments as $comment): ?>
+                                    <?php $icon = $comment['reported'] ? '<i class="material-icons">warning</i>' : ''; ?>
                                     <tr>
                                         <td><?= $comment['author']; ?></td>
                                         <td><?= $comment['comment_date']; ?></td>
                                         <td><?= substr($comment['comment'], 0, 50); ?></td>
                                         <td class="td-actions text-right">
-                                            <button onclick="location.href='<?= '/admin/comments/'.$comment['id']; ?>'" type="button" rel="tooltip" title="Supprimer"
+                                            <button onclick="location.href='<?= '/admin/comments/' . $comment['id']; ?>'"
+                                                    type="button" rel="tooltip" title="Supprimer"
                                                     class="btn btn-danger btn-link btn-sm">
                                                 <i class="material-icons">close</i>
                                             </button>
+                                            <?= $icon; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

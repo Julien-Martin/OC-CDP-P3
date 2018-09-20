@@ -16,7 +16,8 @@ class SingleController {
         $this->commentManager = new CommentModel();
         $posts = $this->postManager->getPosts()->fetchAll();
         $post = $this->postManager->getPost($id);
-        $comments = $this->commentManager->getComments($id);
+        $comments = $this->commentManager->getComments($id)->fetchAll();
+        $commentsNumber = count($comments);
         $total = count($this->postManager->getPosts()->fetchAll());
         $key = array_search($post['id'], array_column($posts, 'id'));
         require 'views/front/single.php';
@@ -29,6 +30,16 @@ class SingleController {
             throw new \Exception("Impossible d'ajouter le commentaire");
         } else {
             header('Location: /episode/'.$id);
+        }
+    }
+
+    function reportComment($episodeId, $commentId, $reported){
+        $this->commentManager = new CommentModel();
+        $reportComment = $this->commentManager->reportComment($reported, $commentId);
+        if($reportComment === false){
+            throw new \Exception("Impossible de signaler le commentaire");
+        } else {
+            header('Location: /episode/'.$episodeId);
         }
     }
 }
