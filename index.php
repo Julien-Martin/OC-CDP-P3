@@ -66,7 +66,7 @@ $router->get('/error/:errorMsg', function($errorMsg){
 try {
     $router->run();
 } catch (Exception $e){
-    if($e->getMessage() == "La page n'existe pas"){
+    if($e->getMessage() == "e404"){
         header('Location: /error/'.$e->getMessage());
     }
 }

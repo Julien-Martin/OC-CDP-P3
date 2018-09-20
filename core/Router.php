@@ -76,6 +76,6 @@ class Router {
                 return $route->call();
             }
         }
-        throw new \Exception("La page n'existe pas");
+        throw new \Exception("e404");
     }
 }

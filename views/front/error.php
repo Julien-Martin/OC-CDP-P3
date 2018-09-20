@@ -3,7 +3,7 @@
     <div class="titan-caption">
         <div class="caption-content">
             <div class="font-alt mb-30 titan-title-size-4">Erreur</div>
-            <div class="font-alt"><?= $errorMsg; ?></div>
+            <div class="font-alt"><?= $errorMsg = "e404" ? "La page n'existe pas" : $errorMsg ?></div>
             <div class="font-alt mt-30"><a class="btn btn-border-w btn-round" href="/">Retour à la page d'accueil</a></div>
         </div>
     </div>
