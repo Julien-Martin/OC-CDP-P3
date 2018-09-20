@@ -27,6 +27,8 @@ ob_start(); ?>
                 </div>
                 <p class="card-category">Nombre de commentaires</p>
                 <h3 class="card-title"><?= $commentsNumber; ?></h3>
+                <p class="card-category">Nombre de commentaires signalés</p>
+                <h3 class="card-title"><?= $reportedNumber; ?></h3>
             </div>
             <div class="card-footer">
                 <div class="stats">

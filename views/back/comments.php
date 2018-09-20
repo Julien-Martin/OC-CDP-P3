@@ -27,7 +27,9 @@ ob_start(); ?>
                                 <?php foreach ($comments as $comment): ?>
                                     <?php
                                     if($comment['reported']){
-                                        $report = ' <button onclick="location.href="/admin/comments/'.$comment["id"].'type="button" rel="tooltip" title="Enlever le signalement" class="btn btn-danger btn-link btn-sm"><i class="material-icons">warning</i></button>';
+                                        $id = $comment['id'];
+                                        $href = "location.href='/admin/comments/$id/unreported'";
+                                        $report = '<button onclick='.$href.' type="button" rel="tooltip" title="Enlever le signalement" class="btn btn-danger btn-link btn-sm"><i class="material-icons">warning</i></button>';
                                     } else {
                                         $report = '';
                                     }

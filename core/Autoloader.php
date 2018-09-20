@@ -2,12 +2,24 @@
 
 namespace Core;
 
+/**
+ * Class Autoloader
+ * @package Core
+ */
 class Autoloader{
 
+
+    /**
+     * Use php autload system
+     */
     public static function register(){
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 
+    /**
+     * Get class with namesplaces
+     * @param $class
+     */
     public static function autoload($class){
         $nameSpace = explode('\\', $class);
         $nameSpace[0] = strtolower($nameSpace[0]);

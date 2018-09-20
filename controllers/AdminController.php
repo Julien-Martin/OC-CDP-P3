@@ -17,7 +17,6 @@ class AdminController {
     private $userManager;
     private $postManager;
     private $commentManager;
-    private $view;
 
     /**
      * AdminController constructor.
@@ -36,6 +35,7 @@ class AdminController {
     function home(){
         $postNumber = count($this->postManager->getPosts()->fetchAll());
         $commentsNumber = count($this->commentManager->getAllComments()->fetchAll());
+        $reportedNumber = $this->commentManager->countReported()->fetch()['reportedNumber'];
         require 'views/back/home.php';
     }
 
