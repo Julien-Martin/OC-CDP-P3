@@ -127,4 +127,14 @@ class AdminController {
             header('Location: /admin/comments');
         }
     }
+
+    function unreportComment($commentId){
+        $this->commentManager = new CommentModel();
+        $unreportComment = $this->commentManager->reportComment(0, $commentId);
+        if($unreportComment === false){
+            throw new \Exception("Impossible de signaler le commentaire");
+        } else {
+            header('Location: /admin/comments');
+        }
+    }
 }

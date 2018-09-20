@@ -33,9 +33,9 @@ class SingleController {
         }
     }
 
-    function reportComment($episodeId, $commentId, $reported){
+    function reportComment($episodeId, $commentId){
         $this->commentManager = new CommentModel();
-        $reportComment = $this->commentManager->reportComment($reported, $commentId);
+        $reportComment = $this->commentManager->reportComment(1, $commentId);
         if($reportComment === false){
             throw new \Exception("Impossible de signaler le commentaire");
         } else {

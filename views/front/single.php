@@ -25,7 +25,7 @@
                                     </div>
                                     <div class="comment-meta font-alt">
                                         <?= $comment['comment_date']; ?>
-                                        <a href=<?= '/episode/reportComment/'.$post['id'].'/'.$comment['id'].'/1'; ?>>Signaler</a>
+                                        <a href=<?= '/episode/reportComment/'.$post['id'].'/'.$comment['id']; ?>>Signaler</a>
                                     </div>
                                 </div>
                             </div>

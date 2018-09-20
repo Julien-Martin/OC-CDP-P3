@@ -20,7 +20,7 @@ $router->get('/login', 'User#loginPage');
 $router->post('/login', 'User#validateLogin');
 $router->get('/episode/:id', 'Single#getPost');
 $router->post('/episode/:episodeId/addcomment', 'Single#addComment');
-$router->get('/episode/reportComment/:episodeId/:commentId/:reported', 'Single#reportComment');
+$router->get('/episode/reportComment/:episodeId/:commentId', 'Single#reportComment');
 
 /**
  * BACK ROUTING
@@ -33,6 +33,7 @@ $router->post('/admin/users/createUser', 'Admin#createUser');
 $router->get('/admin/users/:id', 'Admin#removeUser');
 $router->get('/admin/comments', 'Admin#getComments');
 $router->get('/admin/comments/:comment_id', 'Admin#removeComment');
+$router->get('/admin/comments/:comment_id/unreported', 'Admin#unreportComment');
 
 $router->get('/admin/posts', 'Admin#getPosts');
 $router->get('/admin/posts/:id/removePost', 'Admin#removePost');

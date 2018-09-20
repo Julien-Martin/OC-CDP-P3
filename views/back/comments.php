@@ -25,7 +25,14 @@ ob_start(); ?>
                             <table class="table">
                                 <tbody>
                                 <?php foreach ($comments as $comment): ?>
-                                    <?php $icon = $comment['reported'] ? '<i class="material-icons">warning</i>' : ''; ?>
+                                    <?php
+                                    if($comment['reported']){
+                                        $report = ' <button onclick="location.href="/admin/comments/'.$comment["id"].'type="button" rel="tooltip" title="Enlever le signalement" class="btn btn-danger btn-link btn-sm"><i class="material-icons">warning</i></button>';
+                                    } else {
+                                        $report = '';
+                                    }
+
+                                    ?>
                                     <tr>
                                         <td><?= $comment['author']; ?></td>
                                         <td><?= $comment['comment_date']; ?></td>
@@ -36,7 +43,7 @@ ob_start(); ?>
                                                     class="btn btn-danger btn-link btn-sm">
                                                 <i class="material-icons">close</i>
                                             </button>
-                                            <?= $icon; ?>
+                                            <?= $report; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
