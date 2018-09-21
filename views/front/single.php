@@ -51,7 +51,7 @@
                             <div class="custom-pagination-element">
                                 <?php
                                 if ($key + 1 != 1 && $key + 1 <= $total) {
-                                    $previousPage = $previousPage = $posts[array_search($post['id'], array_column($posts, 'id')) - 1]['id'];;
+                                    $previousPage = $posts[array_search($post['id'], array_column($posts, 'id')) - 1]['id'];
                                     echo '<a href=/episode/' . $previousPage . ' class="demo-nav__button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">

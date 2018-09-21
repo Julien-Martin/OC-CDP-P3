@@ -58,7 +58,6 @@ class PostModel extends Manager {
     public function removePost($id){
         $req = $this->db->prepare('DELETE FROM posts WHERE id=?');
         $req->execute(array($id));
-
         return $req;
     }
 

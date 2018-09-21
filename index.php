@@ -33,14 +33,10 @@ $router->post('/episode/:episodeId/addcomment', 'Single#addComment');
 $router->get('/login', 'User#loginPage');
 $router->get('/logout', 'User#logout');
 $router->post('/login', 'User#validateLogin');
-$router->get('/error/:errorMsg', function($errorMsg){
-    require 'views/front/error.php';
-});
 
 /**
  * BACK ROUTING
  */
-
 session_start();
 if(isset($_SESSION['login'])){
     //GET METHOD
@@ -64,6 +60,9 @@ if(isset($_SESSION['login'])){
     $router->post('/admin/users/:id', 'Admin#removeUser');
 }
 
+$router->get('/error/:errorMsg', function($errorMsg){
+    require 'views/front/error.php';
+});
 
 //Start the routing
 try {

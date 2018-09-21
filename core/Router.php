@@ -76,7 +76,6 @@ class Router {
                 return $route->call();
             }
         }
-        //throw new \Exception("e404");
-        return false;
+        throw new \Exception("e404");
     }
 }
