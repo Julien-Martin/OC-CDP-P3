@@ -11,18 +11,18 @@ ob_start(); ?>
                     <h3 class="card-title">Ajouter un utilisateur</h3>
                 </div>
                 <div class="card-body">
-                    <form action="/admin/users/createUser" method="post">
+                    <form action="/admin/users/createUser" method="post" autocomplete="off">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Nom d'utilisateur</label>
-                                    <input type="text" name="username" class="form-control">
+                                    <input type="text" name="username" class="form-control" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="bmd-label-floating">Mot de passe</label>
-                                    <input type="password" name="password" class="form-control">
+                                    <input type="password" name="password" class="form-control" autocomplete="off">
                                 </div>
                             </div>
                         </div>

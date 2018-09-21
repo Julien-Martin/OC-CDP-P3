@@ -24,9 +24,6 @@
                                 <div class="post-meta"> <?= $post['creation_date'] ?>
                                 </div>
                             </div>
-                            <div class="post-entry">
-                                <p><?= substr($post['content'], 0, 50); ?></p>
-                            </div>
                             <div class="post-more"><a class="more-link" href=<?= '/episode/'.$post['id'];?>>Lire</a></div>
                         </div>
                     </div>

@@ -20,19 +20,19 @@ $router = new Router($_GET['url']);
  */
 
 //GET METHOD
-$router->get('/', 'Home#getPosts');
-$router->get('/episode/:id', 'Single#getPost');
-$router->get('/episode/reportComment/:episodeId/:commentId', 'Single#reportComment');
+$router->addGetRoute('/', 'Home#getPosts');
+$router->addGetRoute('/episode/:id', 'Single#getPost');
+$router->addGetRoute('/episode/reportComment/:episodeId/:commentId', 'Single#reportComment');
 
 //POST METHOD
-$router->post('/episode/:episodeId/addcomment', 'Single#addComment');
+$router->addPostRoute('/episode/:episodeId/addcomment', 'Single#addComment');
 
 /**
  * LOGIN AND LOGOUT ROUTES
  */
-$router->get('/login', 'User#loginPage');
-$router->get('/logout', 'User#logout');
-$router->post('/login', 'User#validateLogin');
+$router->addGetRoute('/login', 'User#loginPage');
+$router->addGetRoute('/logout', 'User#logout');
+$router->addPostRoute('/login', 'User#validateLogin');
 
 /**
  * BACK ROUTING
@@ -40,27 +40,27 @@ $router->post('/login', 'User#validateLogin');
 session_start();
 if(isset($_SESSION['login'])){
     //GET METHOD
-    $router->get('/admin', 'Admin#home');
+    $router->addGetRoute('/admin', 'Admin#home');
 
-    $router->get('/admin/posts/newPost', 'Admin#newPost');
-    $router->get('/admin/posts', 'Admin#getPosts');
-    $router->get('/admin/posts/:id', 'Admin#getPost');
+    $router->addGetRoute('/admin/posts/newPost', 'Admin#newPost');
+    $router->addGetRoute('/admin/posts', 'Admin#getPosts');
+    $router->addGetRoute('/admin/posts/:id', 'Admin#getPost');
 
     //POST METHOD
-    $router->post('/admin/posts/createPost', 'Admin#createPost');
-    $router->post('/admin/posts/:id/editPost', 'Admin#editPost');
-    $router->post('/admin/posts/:id/removePost', 'Admin#removePost');
+    $router->addPostRoute('/admin/posts/createPost', 'Admin#createPost');
+    $router->addPostRoute('/admin/posts/:id/editPost', 'Admin#editPost');
+    $router->addPostRoute('/admin/posts/:id/removePost', 'Admin#removePost');
 
-    $router->get('/admin/comments', 'Admin#getComments');
-    $router->post('/admin/comments/:comment_id/unreported', 'Admin#unreportComment');
-    $router->post('/admin/comments/:comment_id', 'Admin#removeComment');
+    $router->addGetRoute('/admin/comments', 'Admin#getComments');
+    $router->addPostRoute('/admin/comments/:comment_id/unreported', 'Admin#unreportComment');
+    $router->addPostRoute('/admin/comments/:comment_id', 'Admin#removeComment');
 
-    $router->get('/admin/users', 'Admin#getUsers');
-    $router->post('/admin/users/createUser', 'Admin#createUser');
-    $router->post('/admin/users/:id', 'Admin#removeUser');
+    $router->addGetRoute('/admin/users', 'Admin#getUsers');
+    $router->addPostRoute('/admin/users/createUser', 'Admin#createUser');
+    $router->addPostRoute('/admin/users/:id', 'Admin#removeUser');
 }
 
-$router->get('/error/:errorMsg', function($errorMsg){
+$router->addGetRoute('/error/:errorMsg', function($errorMsg){
     require 'views/front/error.php';
 });
 

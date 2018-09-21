@@ -27,7 +27,7 @@ class Router {
      * @param null $name
      * @return Route
      */
-    public function get($path, $callable, $name = null){
+    public function addGetRoute($path, $callable, $name = null){
         return $this->add($path, $callable, $name, 'GET');
     }
 
@@ -38,7 +38,7 @@ class Router {
      * @param null $name
      * @return Route
      */
-    public function post($path, $callable, $name = null){
+    public function addPostRoute($path, $callable, $name = null){
         return $this->add($path, $callable, $name, 'POST');
     }
 
