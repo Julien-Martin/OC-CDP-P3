@@ -35,6 +35,9 @@
             </div>
             <div class="collapse navbar-collapse" id="custom-collapse">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/a-propos">À propos</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">Accueil</a></li>
                 </ul>
             </div>

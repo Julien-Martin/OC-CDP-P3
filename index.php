@@ -21,6 +21,7 @@ $router = new Router($_GET['url']);
 
 //GET METHOD
 $router->addGetRoute('/', 'Home#getPosts');
+$router->addGetRoute('/a-propos', 'Home#about');
 $router->addGetRoute('/episode/:id', 'Single#getPost');
 $router->addGetRoute('/episode/reportComment/:episodeId/:commentId', 'Single#reportComment');
 
@@ -42,11 +43,14 @@ if(isset($_SESSION['login'])){
     //GET METHOD
     $router->addGetRoute('/admin', 'Admin#home');
 
+    $router->addGetRoute('/admin/about', 'Admin#about');
     $router->addGetRoute('/admin/posts/newPost', 'Admin#newPost');
     $router->addGetRoute('/admin/posts', 'Admin#getPosts');
     $router->addGetRoute('/admin/posts/:id', 'Admin#getPost');
 
     //POST METHOD
+    $router->addPostRoute('/admin/about', 'Admin#editAbout');
+
     $router->addPostRoute('/admin/posts/createPost', 'Admin#createPost');
     $router->addPostRoute('/admin/posts/:id/editPost', 'Admin#editPost');
     $router->addPostRoute('/admin/posts/:id/removePost', 'Admin#removePost');

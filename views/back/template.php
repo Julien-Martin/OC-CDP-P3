@@ -42,6 +42,12 @@
                         <p>Tableau de bord</p>
                     </a>
                 </li>
+                <li class="nav-item <?= $view == 'À propos' ? 'active' : ''; ?>">
+                    <a class="nav-link" href="/admin/about">
+                        <i class="material-icons">face</i>
+                        <p>Page à propos</p>
+                    </a>
+                </li>
                 <li class="nav-item <?= $view == 'Épisodes' ? 'active' : ''; ?>">
                     <a class="nav-link" href="/admin/posts">
                         <i class="material-icons">library_books</i>

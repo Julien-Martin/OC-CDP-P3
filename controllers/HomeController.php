@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Models\AboutModel;
 use Models\PostModel;
 
 /**
@@ -11,12 +12,14 @@ use Models\PostModel;
 class HomeController {
 
     private $postManager;
+    private $aboutManager;
 
     /**
      * HomeController constructor.
      */
     public function __construct(){
         $this->postManager = new PostModel();
+        $this->aboutManager = new AboutModel();
     }
 
     /**
@@ -25,6 +28,11 @@ class HomeController {
     function getPosts(){
         $posts = $this->postManager->getPosts()->fetchAll();
         require 'views/front/home.php';
+    }
+
+    function about(){
+        $about = $this->aboutManager->getContent()->fetch();
+        require 'views/front/about.php';
     }
 
 }

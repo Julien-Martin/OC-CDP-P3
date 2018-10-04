@@ -8,6 +8,7 @@
 
 namespace Controllers;
 
+use Models\AboutModel;
 use Models\CommentModel;
 use Models\PostModel;
 use Models\UserModel;
@@ -21,6 +22,7 @@ class AdminController {
     private $userManager;
     private $postManager;
     private $commentManager;
+    private $aboutManager;
 
     /**
      * AdminController constructor.
@@ -32,6 +34,7 @@ class AdminController {
         $this->userManager = new UserModel();
         $this->commentManager = new CommentModel();
         $this->postManager = new PostModel();
+        $this->aboutManager = new AboutModel();
     }
 
     /**
@@ -42,6 +45,26 @@ class AdminController {
         $commentsNumber = count($this->commentManager->getAllComments()->fetchAll());
         $reportedNumber = $this->commentManager->countReported()->fetch()['reportedNumber'];
         require 'views/back/home.php';
+    }
+
+    function about(){
+        $about = $this->aboutManager->getContent()->fetch();
+        require 'views/back/about.php';
+    }
+
+    /**
+     * Edit about page
+     * @throws \Exception
+     */
+    function editAbout(){
+        $allowTags = '<p><strong><em><u><h1><h2><h3><h4><h5><h6><img>';
+        $allowTags .= '<li><ol><ul><span><div><br><ins><del>';
+        $about = $this->aboutManager->updatePost(1, strip_tags(stripslashes($_POST['content']), $allowTags));
+        if($about === false){
+            throw new \Exception("Impossible d'éditer l'épisode l'épisode");
+        } else {
+            header('Location: /admin/about');
+        }
     }
 
     /**
