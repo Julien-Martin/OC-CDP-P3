@@ -45,43 +45,44 @@
                             <button class="btn btn-round btn-d" type="submit">Publier le commentaire</button>
                         </form>
                     </div>
-                    <div class="comment-form">
-                        <h4 class="comment-form-title font-alt">Pagination</h4>
-                        <div class="custom-pagination">
-                            <div class="custom-pagination-element">
-                                <?php
-                                if ($key + 1 != 1 && $key + 1 <= $total) {
-                                    $previousPage = $posts[array_search($post['id'], array_column($posts, 'id')) - 1]['id'];
-                                    echo '<a href=/episode/' . $previousPage . ' class="demo-nav__button">
+                    <?php if($total > 1): ?>
+                        <div class="comment-form">
+                            <h4 class="comment-form-title font-alt">Pagination</h4>
+                            <div class="custom-pagination">
+                                <div class="custom-pagination-element">
+                                    <?php
+                                    if ($key + 1 != 1 && $key + 1 <= $total) {
+                                        $previousPage = $posts[array_search($post['id'], array_column($posts, 'id')) - 1]['id'];
+                                        echo '<a href=/episode/' . $previousPage . ' class="demo-nav__button">
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
                                     <i class="material-icons">arrow_back</i>
                                 </button>
                                 Épisode ' . $key . '
                             </a>';
-                                }
-                                ?>
-                            </div>
-                            <div class="section-spacer"></div>
-                            <div class="custom-pagination-element">
-                                <?php
-                                if ($key + 1 != $total && $key + 1 < $total) {
-                                    $nextPage = $posts[array_search($post['id'], array_column($posts, 'id')) + 1]['id'];
-                                    $url = '/episode/' . $nextPage;
-                                    echo '<a href=/episode/' . $nextPage . ' class="demo-nav__button">
+                                    }
+                                    ?>
+                                </div>
+                                <div class="section-spacer"></div>
+                                <div class="custom-pagination-element">
+                                    <?php
+                                    if ($key + 1 != $total && $key + 1 < $total) {
+                                        $nextPage = $posts[array_search($post['id'], array_column($posts, 'id')) + 1]['id'];
+                                        $url = '/episode/' . $nextPage;
+                                        echo '<a href=/episode/' . $nextPage . ' class="demo-nav__button">
                                 Épisode ' . ($key + 2) . '
                                 <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900"
                                         role="presentation">
                                     <i class="material-icons">arrow_forward</i>
                                 </button>
                             </a>';
-                                }
-                                ?>
+                                    }
+                                    ?>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
-
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
