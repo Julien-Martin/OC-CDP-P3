@@ -21,11 +21,6 @@ table.table tbody tr {
 table.table tbody tr td {
     border: none;
 }
-table.table tbody tr td.td-text {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
 
 table.table tbody tr td.td-actions {
     justify-content: flex-start;
