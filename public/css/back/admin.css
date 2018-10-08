@@ -19,23 +19,14 @@ table.table tbody tr {
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 table.table tbody tr td {
-    width: 20%;
     border: none;
 }
 table.table tbody tr td.td-text {
-    width: 50%;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
 table.table tbody tr td.td-actions {
-    width: 10%;
     justify-content: flex-start;
-}
-
-@media screen and (max-width: 991px){
-    table.table tbody tr td.td-actions {
-        width: 20%;
-    }
 }
