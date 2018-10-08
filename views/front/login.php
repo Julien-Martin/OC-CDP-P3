@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
     <div class="main">
-        <section class="module bg-dark-30" data-background="assets/images/section-4.jpg">
+        <section class="module bg-dark-30" data-background="/public/img/connexion.jpg">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-sm-offset-3">

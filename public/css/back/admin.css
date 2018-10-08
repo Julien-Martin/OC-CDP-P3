@@ -33,3 +33,9 @@ table.table tbody tr td.td-actions {
     width: 10%;
     justify-content: flex-start;
 }
+
+@media screen and (max-width: 991px){
+    table.table tbody tr td.td-actions {
+        width: 20%;
+    }
+}
