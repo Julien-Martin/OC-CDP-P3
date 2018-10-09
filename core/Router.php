@@ -50,7 +50,7 @@ class Router {
      * @param $method
      * @return Route
      */
-    public function add($path, $callable, $name, $method){
+    private function add($path, $callable, $name, $method){
         $route = new Route($path, $callable);
         $this->routes[$method][] = $route;
         if(is_string($callable) && $name === null){

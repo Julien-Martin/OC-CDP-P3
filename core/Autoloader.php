@@ -10,14 +10,14 @@ class Autoloader{
 
 
     /**
-     * Use php autload system
+     * Use php autoload system
      */
     public static function register(){
         spl_autoload_register(array(__CLASS__, 'autoload'));
     }
 
     /**
-     * Get class with namesplaces
+     * Get class with namespaces
      * @param $class
      */
     public static function autoload($class){
